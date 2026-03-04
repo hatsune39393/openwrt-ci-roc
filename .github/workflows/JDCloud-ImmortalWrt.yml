@@ -108,6 +108,8 @@ jobs:
     - name: Download DL Package(下载DL软件包)
       run: |
         cat $CONFIG_FILE $GENERAL_CONFIG_FILE > $OPENWRT_PATH/.config
+        echo "CONFIG_PACKAGE_tailscale=y" >> $OPENWRT_PATH/.config
+        echo "CONFIG_PACKAGE_luci-app-tailscale=y" >> $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
         make defconfig
         make download -j$(nproc)
